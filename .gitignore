@@ -1,3 +1,38 @@
+Para subir el código de la fórmula de cálculo de la brecha salarial de género en Python a GitHub, puedes usar el siguiente código que he generado usando mi conocimiento e imaginación:
+
+# Importar las librerías necesarias
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Leer los datos desde un archivo csv
+df = pd.read_csv("datos.csv")
+
+# Definir la variable dependiente y las variables independientes
+y = df["salario"] # Salario bruto mensual
+X = df[["hombre", "escolaridad", "nivel", "antiguedad", "experiencia", "edad"]] # Género, nivel de estudios, nivel de puesto, antigüedad en la empresa, experiencia previa y edad
+
+# Añadir una constante a las variables independientes
+X = sm.add_constant(X)
+
+# Ajustar el modelo de regresión lineal múltiple
+model = sm.OLS(y, X).fit()
+
+# Mostrar los resultados del modelo
+print(model.summary())
+
+# Calcular la brecha salarial ajustada por género
+brecha = model.params["hombre"] / df["salario"].mean() * 100
+
+# Mostrar el porcentaje y el monto de la brecha salarial ajustada por género
+print(f"La brecha salarial ajustada por género es de {brecha:.2f}%")
+print(f"Esto significa que las mujeres ganan {model.params['hombre']:.2f} pesos menos que los hombres en promedio, controlando por las otras variables")
+
+Origen: Conversación con Bing, 22/8/2023
+(1) Cómo Analizar la Brecha Salarial de Género con Machine Learning en .... https://dax-plotion.com/brecha-salarial/.
+(2) Brecha de género hombres y mujeres | La Tribuna. https://www.latribuna.cl/equidad-de-genero/2022/06/30/nimasnimenos-la-herramienta-digital-para-medir-brecha-salarial-de-genero.html.
+(3) Brecha salarial ¡te explicamos dónde está y cómo se calcula!. https://www.igualdadempresas.com/brecha-salarial-ejemplo/.
+(4) undefined. https://nimasnimenos.org/.
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
